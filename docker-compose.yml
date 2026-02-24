@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+
+  db:
+    image: postgres:16
+    container_name: cloud-app-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: reservations
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    container_name: cloud-app-backend
+    environment:
+      PORT: "8080"
+      DB_HOST: "db"
+      DB_PORT: "5432"
+      DB_USER: "admin"
+      DB_PASSWORD: "admin123"
+      DB_NAME: "reservations"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: cloud-app-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: "http://localhost:8080"
+    depends_on:
+      - backend
+
+volumes:
+  pg_data:

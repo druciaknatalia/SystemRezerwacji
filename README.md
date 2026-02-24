@@ -5,4 +5,13 @@
 ├─ docs/
 │ ├─ architecture.png
 │ └─ architecture.mmd
-└─ README.md---## Dokumentacja architektury- Diagram C4 (Level 2) – rysunek: `docs/architecture.png`- Diagram C4 (Level 2) – kod Mermaid: `docs/architecture.mmd`---## Status projektu- [x] Artefakt 1 – Deklaracja projektu- [x] Artefakt 1 – Struktura katalogów- [x] Artefakt 1 – Diagram C4 (PNG)- [x] Artefakt 1 – Diagram C4 (Mermaid)- [ ] Artefakt 2 – Docker i uruchomienie lokalne- [ ] Artefakt 3 – Wdrożenie do Azure---## Informacje dodatkoweProjekt będzie rozwijany iteracyjnie w kolejnych etapach zajęć.  W następnych fazach zostanie dodana konfiguracja środowiska, testy oraz wdrożenie do chmury.
+└─ README.md---## Dokumentacja architektury- Diagram C4 (Level 2) – rysunek: `docs/architecture.png`- Diagram C4 (Level 2) – kod Mermaid: `docs/architecture.mmd`---## Status projektu- [x] Artefakt 1 – Deklaracja projektu- [x] Artefakt 1 – Struktura katalogów- [x] Artefakt 1 – Diagram C4 (PNG)- [x] Artefakt 1 – Diagram C4 (Mermaid)- [ ] Artefakt 2 – Docker i uruchomienie lokalne- [ ] Artefakt 3 – Wdrożenie do Azure---## Informacje dodatkoweProjekt będzie rozwijany iteracyjnie w kolejnych etapach zajęć.  W następnych fazach zostanie dodana konfiguracja środowiska, testy oraz wdrożenie do chmury.
+
+## Baza danych
+
+Ze względu na ograniczenia platformy Apple Silicon (Mac M5) zastosowano PostgreSQL zamiast SQL Server.
+
+## Status projektu
+
+- [x] Artefakt 1: Architektura i struktura folderów
+- [x] Artefakt 2: Środowisko wielokontenerowe uruchomione lokalnie (Docker Compose)
