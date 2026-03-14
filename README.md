@@ -56,6 +56,7 @@ Booker/
 - [x] Artefakt 1 – Diagram C4 (PNG)
 - [x] Artefakt 1 – Diagram C4 (Mermaid)
 - [x] Artefakt 2 – Docker i uruchomienie lokalne
+- [x] Artefakt 3 - Frontend
 ---
 
 ## Informacje dodatkowe
