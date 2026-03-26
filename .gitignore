@@ -9,3 +9,6 @@ yarn-error.log*
 # Env
 .env
 .env.*
+
+bin/
+obj/
