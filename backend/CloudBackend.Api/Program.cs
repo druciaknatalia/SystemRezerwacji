@@ -3,26 +3,22 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Baza danych
+// DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// API / kontrolery / swagger
+// API
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CORS
+// CORS - na czas projektu ustawiamy szeroko, żeby frontend Azure działał na pewno
 builder.Services.AddCors(options =>
 {
    options.AddPolicy("AllowFrontend", policy =>
    {
        policy
-           .WithOrigins(
-               "https://systemrezerwacji-frontend-dag2d5bygbd3hsgd.spaincentral-01.azurewebsites.net",
-               "http://localhost:5173",
-               "http://localhost:3000"
-           )
+           .AllowAnyOrigin()
            .AllowAnyHeader()
            .AllowAnyMethod();
    });
@@ -34,15 +30,12 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+// Middleware
 app.UseHttpsRedirection();
-
-// CORS
 app.UseCors("AllowFrontend");
-
-// Authorization
 app.UseAuthorization();
 
-// Kontrolery
+// Map controllers
 app.MapControllers();
 
 app.Run();
