@@ -1,37 +1,29 @@
-name: Build and deploy frontend to Azure Web App
+name: Build and deploy frontend
 
 on:
  push:
    branches:
      - main
- workflow_dispatch:
-
-env:
- AZURE_WEBAPP_NAME: systemrezerwacji-frontend
- NODE_VERSION: '20.x'
 
 jobs:
  build:
    runs-on: ubuntu-latest
 
    steps:
-     - name: Checkout repository
-       uses: actions/checkout@v4
+     - uses: actions/checkout@v4
 
-     - name: Set up Node.js
+     - name: Use Node.js
        uses: actions/setup-node@v4
        with:
-         node-version: ${{ env.NODE_VERSION }}
+         node-version: '18'
 
      - name: Install dependencies
-       run: |
-         cd frontend
-         npm install
+       run: npm install
+       working-directory: frontend
 
-     - name: Build frontend
-       run: |
-         cd frontend
-         npm run build
+     - name: Build
+       run: npm run build
+       working-directory: frontend
 
      - name: Upload artifact
        uses: actions/upload-artifact@v4
@@ -52,6 +44,6 @@ jobs:
      - name: Deploy to Azure Web App
        uses: azure/webapps-deploy@v3
        with:
-         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+         app-name: systemrezerwacji-frontend
+         publish-profile: ${{ secrets.AZURE_FRONTEND_PUBLISH_PROFILE }}
          package: .
