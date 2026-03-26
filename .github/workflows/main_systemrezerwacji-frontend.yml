@@ -4,6 +4,7 @@ on:
  push:
    branches:
      - main
+ workflow_dispatch:
 
 jobs:
  build:
@@ -15,20 +16,20 @@ jobs:
      - name: Use Node.js
        uses: actions/setup-node@v4
        with:
-         node-version: '18'
+         node-version: '20'
 
      - name: Install dependencies
+       working-directory: frontend
        run: npm install
-       working-directory: frontend
 
-     - name: Build
+     - name: Build frontend
+       working-directory: frontend
        run: npm run build
-       working-directory: frontend
 
-     - name: Upload artifact
+     - name: Upload frontend artifact
        uses: actions/upload-artifact@v4
        with:
-         name: frontend
+         name: frontend-dist
          path: frontend/dist
 
  deploy:
@@ -36,14 +37,15 @@ jobs:
    needs: build
 
    steps:
-     - name: Download artifact
+     - name: Download frontend artifact
        uses: actions/download-artifact@v4
        with:
-         name: frontend
+         name: frontend-dist
+         path: frontend-dist
 
      - name: Deploy to Azure Web App
        uses: azure/webapps-deploy@v3
        with:
          app-name: systemrezerwacji-frontend
          publish-profile: ${{ secrets.AZURE_FRONTEND_PUBLISH_PROFILE }}
-         package: .
+         package: frontend-dist
