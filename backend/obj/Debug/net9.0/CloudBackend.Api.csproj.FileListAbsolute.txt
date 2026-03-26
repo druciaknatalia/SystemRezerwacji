@@ -1,0 +1,9 @@
+/Volumes/Dysk/Studia/2026/Budowa i administracja aplikacji w chmurze/cloud-app/backend/obj/Debug/net9.0/CloudBackend.Api.csproj.AssemblyReference.cache
+/Volumes/Dysk/Studia/2026/Budowa i administracja aplikacji w chmurze/cloud-app/backend/obj/Debug/net9.0/rpswa.dswa.cache.json
+/Volumes/Dysk/Studia/2026/Budowa i administracja aplikacji w chmurze/cloud-app/backend/obj/Debug/net9.0/CloudBackend.Api.GeneratedMSBuildEditorConfig.editorconfig
+/Volumes/Dysk/Studia/2026/Budowa i administracja aplikacji w chmurze/cloud-app/backend/obj/Debug/net9.0/CloudBackend.Api.AssemblyInfoInputs.cache
+/Volumes/Dysk/Studia/2026/Budowa i administracja aplikacji w chmurze/cloud-app/backend/obj/Debug/net9.0/CloudBackend.Api.AssemblyInfo.cs
+/Volumes/Dysk/Studia/2026/Budowa i administracja aplikacji w chmurze/cloud-app/backend/obj/Debug/net9.0/CloudBackend.Api.csproj.CoreCompileInputs.cache
+/Volumes/Dysk/Studia/2026/Budowa i administracja aplikacji w chmurze/cloud-app/backend/obj/Debug/net9.0/CloudBackend.Api.MvcApplicationPartsAssemblyInfo.cs
+/Volumes/Dysk/Studia/2026/Budowa i administracja aplikacji w chmurze/cloud-app/backend/obj/Debug/net9.0/CloudBackend.Api.MvcApplicationPartsAssemblyInfo.cache
+/Volumes/Dysk/Studia/2026/Budowa i administracja aplikacji w chmurze/cloud-app/backend/obj/Debug/net9.0/CloudBackend.Api.sourcelink.json
