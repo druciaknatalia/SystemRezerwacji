@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Połączenie z bazą
+// Baza danych
 builder.Services.AddDbContext<AppDbContext>(options =>
    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Kontrolery i Swagger
+// API / kontrolery / swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CORS dla frontendu z Azure
+// CORS
 builder.Services.AddCors(options =>
 {
    options.AddPolicy("AllowFrontend", policy =>
@@ -20,8 +20,8 @@ builder.Services.AddCors(options =>
        policy
            .WithOrigins(
                "https://systemrezerwacji-frontend-dag2d5bygbd3hsgd.spaincentral-01.azurewebsites.net",
-               "http://localhost:3000",
-               "http://localhost:5173"
+               "http://localhost:5173",
+               "http://localhost:3000"
            )
            .AllowAnyHeader()
            .AllowAnyMethod();
@@ -34,16 +34,15 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// HTTPS
 app.UseHttpsRedirection();
 
 // CORS
 app.UseCors("AllowFrontend");
 
-// Autoryzacja
+// Authorization
 app.UseAuthorization();
 
-// Mapowanie kontrolerów
+// Kontrolery
 app.MapControllers();
 
 app.Run();
