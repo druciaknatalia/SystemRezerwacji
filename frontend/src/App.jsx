@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "https://systemrezerwacji-backend-eth4e9c9abcrd7hp.spaincentral-01.azurewebsites.net/api";
 
 function App() {
  const [tasks, setTasks] = useState([]);
