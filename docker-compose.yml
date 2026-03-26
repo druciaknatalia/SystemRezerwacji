@@ -1,33 +1,31 @@
 services:
-  db:
-    image: postgres:16
-    container_name: cloud-app-db
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin123
-      POSTGRES_DB: cloudapp
-    ports:
-      - "5432:5432"
-    volumes:
-      - pg_data:/var/lib/postgresql/data
+ db:
+   image: postgres:15
+   container_name: cloud-app-db
+   environment:
+     POSTGRES_USER: postgres
+     POSTGRES_PASSWORD: postgres
+     POSTGRES_DB: appdb
+   ports:
+     - "5432:5432"
+   volumes:
+     - postgres_data:/var/lib/postgresql/data
 
-  backend:
-    build:
-      context: ./backend/CloudBackend.Api
-    container_name: cloud-app-backend
-    ports:
-      - "8081:8081"
-    depends_on:
-      - db
+ backend:
+   build: ./backend/CloudBackend.Api
+   container_name: cloud-app-backend
+   ports:
+     - "8081:8081"
+   depends_on:
+     - db
 
-  frontend:
-    build:
-      context: ./frontend
-    container_name: cloud-app-frontend
-    ports:
-      - "8080:8080"
-    depends_on:
-      - backend
+ frontend:
+   build: ./frontend
+   container_name: cloud-app-frontend
+   ports:
+     - "8080:8080"
+   depends_on:
+     - backend
 
 volumes:
-  pg_data:
+ postgres_data:

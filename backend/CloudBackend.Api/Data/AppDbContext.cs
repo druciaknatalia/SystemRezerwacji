@@ -1,13 +1,13 @@
-using Microsoft.EntityFrameworkCore;
 using CloudBackend.Api.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CloudBackend.Api.Data;
 
 public class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-    {
-    }
+   public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+   {
+   }
 
-    public DbSet<TaskItem> Tasks => Set<TaskItem>();
+   public DbSet<TodoTask> Tasks => Set<TodoTask>();
 }

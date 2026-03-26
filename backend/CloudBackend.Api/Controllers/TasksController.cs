@@ -1,4 +1,5 @@
 using CloudBackend.Api.Data;
+using CloudBackend.Api.DTOs;
 using CloudBackend.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,75 +10,95 @@ namespace CloudBackend.Api.Controllers;
 [Route("api/[controller]")]
 public class TasksController : ControllerBase
 {
-    private readonly AppDbContext _context;
+   private readonly AppDbContext _context;
 
-    public TasksController(AppDbContext context)
-    {
-        _context = context;
-    }
+   public TasksController(AppDbContext context)
+   {
+       _context = context;
+   }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<TaskItem>>> GetTasks()
-    {
-        return await _context.Tasks.ToListAsync();
-    }
+   // GET: api/tasks
+   [HttpGet]
+   public async Task<ActionResult<IEnumerable<TaskReadDto>>> GetTasks()
+   {
+       var tasks = await _context.Tasks
+           .Select(t => new TaskReadDto
+           {
+               Id = t.Id,
+               Title = t.Title,
+               Description = t.Description,
+               IsDone = t.IsDone
+           })
+           .ToListAsync();
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<TaskItem>> GetTask(int id)
-    {
-        var task = await _context.Tasks.FindAsync(id);
+       return Ok(tasks);
+   }
 
-        if (task == null)
-            return NotFound();
+   // GET: api/tasks/5
+   [HttpGet("{id}")]
+   public async Task<ActionResult<TaskReadDto>> GetTask(int id)
+   {
+       var task = await _context.Tasks
+           .Where(t => t.Id == id)
+           .Select(t => new TaskReadDto
+           {
+               Id = t.Id,
+               Title = t.Title,
+               Description = t.Description,
+               IsDone = t.IsDone
+           })
+           .FirstOrDefaultAsync();
 
-        return task;
-    }
+       if (task == null)
+           return NotFound();
 
-    [HttpPost]
-    public async Task<ActionResult<TaskItem>> CreateTask(TaskItem task)
-    {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+       return Ok(task);
+   }
 
-        _context.Tasks.Add(task);
-        await _context.SaveChangesAsync();
+   // POST: api/tasks
+   [HttpPost]
+   public async Task<ActionResult<TodoTask>> CreateTask(TodoTask task)
+   {
+       _context.Tasks.Add(task);
+       await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetTask), new { id = task.Id }, task);
-    }
+       return CreatedAtAction(nameof(GetTask), new { id = task.Id }, task);
+   }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateTask(int id, TaskItem task)
-    {
-        if (id != task.Id)
-            return BadRequest("ID in URL does not match body");
+   // PUT: api/tasks/5
+   [HttpPut("{id}")]
+   public async Task<IActionResult> UpdateTask(int id, TodoTask updatedTask)
+   {
+       if (id != updatedTask.Id)
+           return BadRequest();
 
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+       var existingTask = await _context.Tasks.FindAsync(id);
 
-        var existingTask = await _context.Tasks.FindAsync(id);
-        if (existingTask == null)
-            return NotFound();
+       if (existingTask == null)
+           return NotFound();
 
-        existingTask.Title = task.Title;
-        existingTask.Description = task.Description;
-        existingTask.IsDone = task.IsDone;
+       existingTask.Title = updatedTask.Title;
+       existingTask.Description = updatedTask.Description;
+       existingTask.IsDone = updatedTask.IsDone;
 
-        await _context.SaveChangesAsync();
+       await _context.SaveChangesAsync();
 
-        return NoContent();
-    }
+       return NoContent();
+   }
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteTask(int id)
-    {
-        var task = await _context.Tasks.FindAsync(id);
+   // DELETE: api/tasks/5
+   [HttpDelete("{id}")]
+   public async Task<IActionResult> DeleteTask(int id)
+   {
+       var task = await _context.Tasks.FindAsync(id);
 
-        if (task == null)
-            return NotFound();
+       if (task == null)
+           return NotFound();
 
-        _context.Tasks.Remove(task);
-        await _context.SaveChangesAsync();
+       _context.Tasks.Remove(task);
+       await _context.SaveChangesAsync();
 
-        return NoContent();
-    }
+       return NoContent();
+   }
 }
+
