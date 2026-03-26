@@ -58,6 +58,7 @@ Booker/
 - [x] Artefakt 2 – Docker i uruchomienie lokalne
 - [x] Artefakt 3 - Frontend
 - [x] Artefakt 4 - Działająca warstwa logiki backendu
+- [x] Artefakt 5 - System gotowy na chmurę
 ---
 
 ## Informacje dodatkowe
