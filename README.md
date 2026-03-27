@@ -59,12 +59,14 @@ Booker/
 - [x] Artefakt 3 - Frontend
 - [x] Artefakt 4 - Działająca warstwa logiki backendu
 - [x] Artefakt 5 - System gotowy na chmurę
+- [x] Artefakt 6 - Aplikacja wdrożona w Azure
 ---
 
 ## Informacje dodatkowe
 
 Projekt będzie rozwijany iteracyjnie w kolejnych etapach zajęć.  
 W następnych fazach zostanie dodana konfiguracja środowiska, testy oraz wdrożenie do chmury.
+Po migracji zakonczonej sukcesem migracji, aplikacja została zmodyfikowana, aby zamienić podstawową wersję formularza, na faktyczny system rezerwacji. Zmieniłam model danych na rezerwacje (klient, usługa, data i godzina), dodałam nowy kontroler w backendzie oraz logikę sprawdzania, czy termin jest już zajęty. Zaktualizowałam bazę danych przez migracje i naprawiłam połączenie z Azure SQL. Następnie przebudowałam frontend, dodając formularz rezerwacji, sprawdzanie dostępności i listę rezerwacji. Na końcu połączyłam frontend z backendem i wdrożyłam całość na Azure przez GitHub, dzięki czemu aplikacja działa online. 
 
 ## Baza danych
 
