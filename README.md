@@ -60,6 +60,7 @@ Booker/
 - [x] Artefakt 4 - Działająca warstwa logiki backendu
 - [x] Artefakt 5 - System gotowy na chmurę
 - [x] Artefakt 6 - Aplikacja wdrożona w Azure
+- [x] Artefakt 7 - Zabezpieczona aplikacja
 ---
 
 ## Informacje dodatkowe
