@@ -61,6 +61,7 @@ Booker/
 - [x] Artefakt 5 - System gotowy na chmurę
 - [x] Artefakt 6 - Aplikacja wdrożona w Azure
 - [x] Artefakt 7 - Zabezpieczona aplikacja
+- [x] Artefakt 8 - Wybudowany “bezpiecznik” i wdrożony automatu CI/CD
 ---
 
 ## Informacje dodatkowe
